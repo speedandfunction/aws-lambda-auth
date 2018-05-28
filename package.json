@@ -1,0 +1,29 @@
+{
+  "name": "aws-lambda-auth",
+  "version": "0.1.0",
+  "description": "Make your lambda custom authorizer easier",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": {
+    "name": "Speed and Function",
+    "email": "",
+    "url": "https://speedandfunction.com/"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "lodash": "^4.17.10",
+    "object-hash": "^1.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0"
+  },
+  "engines": {
+    "node": "8.x.x",
+    "npm": "5.x.x"
+  }
+}
