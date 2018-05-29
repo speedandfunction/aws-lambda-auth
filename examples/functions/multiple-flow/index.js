@@ -1,19 +1,18 @@
-const {MultipleAuthFlow, lambda, utils} = require('../../../index');
+const {MultipleAuthFlow, lambda} = require('../../../index');
 const UserHandler = require('./UserHandler');
 const AdminHandler = require('./AdminHandler');
 
 export default lambda(async ({lambdaEvent, lambdaContext}) => {
-  const bearerToken = utils.extractTokenFromEvent(lambdaEvent);
-  const tokenPayload = await decodeToken(bearerToken);
+  const tokenPayload = await decodeToken(lambdaEvent);
 
   return new MultipleAuthFlow({lambdaEvent, lambdaContext, tokenPayload})
-    .addHandler(UserHandler, () => tokenPayload.role === 'USER')
-    .addHandler(AdminHandler, () => tokenPayload.role === 'ADMIN')
+    .useHandler(UserHandler, () => tokenPayload.role === 'USER')
+    .useHandler(AdminHandler, () => tokenPayload.role === 'ADMIN')
     .createPolicy();
 });
 
 async function decodeToken(lambdaEvent) {
-  // Decode token with your sercret
+  // Decode token with your sercret from lambdaEvent.headers.Authorization
   // and return object with payload
   return {
     role: 'ADMIN',

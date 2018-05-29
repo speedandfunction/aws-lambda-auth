@@ -1,7 +1,6 @@
 const {
   SingleAuthFlow,
   lambda,
-  utils,
   middlewares,
 } = require('../../../index');
 const UserHandler = require('./UserHandler');
@@ -12,17 +11,15 @@ const kmsMiddleware = middlewares.kms(['MONGO_USER', 'MONGO_PASS']);
 export default lambda(async ({lambdaEvent, lambdaContext}) => {
   // lambdaContext.kms will has decoded "MONGO_USER" and "MONGO_PASS"
   // so that we can connect to MongoDB to be able to check user access in "UserHandler"
-
-  const bearerToken = utils.extractTokenFromEvent(lambdaEvent);
-  const tokenPayload = await decodeToken(bearerToken);
+  const tokenPayload = await decodeToken(lambdaEvent);
 
   return new SingleAuthFlow({lambdaEvent, lambdaContext, tokenPayload})
-    .addHandler(UserHandler)
+    .useHandler(UserHandler)
     .createPolicy();
 }, [kmsMiddleware]);
 
 async function decodeToken(lambdaEvent) {
-  // Decode token with your sercret
+  // Decode token with your sercret from lambdaEvent.headers.Authorization
   // and return object with payload
   return lambdaEvent;
 }

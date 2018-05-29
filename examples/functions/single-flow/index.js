@@ -1,18 +1,16 @@
-import {SingleAuthFlow, lambda, utils} from '../../../index';
+import {SingleAuthFlow, lambda} from '../../../index';
 import UserHandler from './UserHandler';
 
 export default lambda(async ({lambdaEvent, lambdaContext}) => {
-  // Extreact "Bearer <token>" from "headers.Authorization" header
-  const bearerToken = utils.extractTokenFromEvent(lambdaEvent);
-  const tokenPayload = await decodeToken(bearerToken);
+  const tokenPayload = await decodeToken(lambdaEvent);
 
   return new SingleAuthFlow({lambdaEvent, lambdaContext, tokenPayload})
-    .addHandler(UserHandler)
+    .useHandler(UserHandler)
     .createPolicy();
 });
 
 async function decodeToken(lambdaEvent) {
-  // Decode token with your sercret
+  // Decode token with your sercret from lambdaEvent.headers.Authorization
   // and return object with payload
   return {
     userId: '12331',

@@ -3,7 +3,6 @@ module.exports = {
     env: {
         node: true
     },
-
     rules: {
       'indent': ['error', 2],
       'object-curly-spacing': ['error', 'never'],
