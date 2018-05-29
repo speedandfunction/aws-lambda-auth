@@ -1,6 +1,6 @@
 const {AuthHandler, utils} = require('../../../index');
 
-module.exports = class UserHandler extends AuthHandler {
+export default class UserHandler extends AuthHandler {
   get name() {
     // Just name to be logged
     return 'Admin handler';
@@ -15,4 +15,4 @@ module.exports = class UserHandler extends AuthHandler {
 
     return utils.buildExecutionApiArn({path: '*'});
   }
-};
+}

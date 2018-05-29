@@ -1,7 +1,8 @@
-const {SingleAuthFlow, lambda, utils} = require('../../../index');
-const UserHandler = require('./UserHandler');
+import {SingleAuthFlow, lambda, utils} from '../../../index';
+import UserHandler from './UserHandler';
 
-module.exports = lambda(async ({lambdaEvent, lambdaContext}) => {
+export default lambda(async ({lambdaEvent, lambdaContext}) => {
+  // Extreact "Bearer <token>" from "headers.Authorization" header
   const bearerToken = utils.extractTokenFromEvent(lambdaEvent);
   const tokenPayload = await decodeToken(bearerToken);
 
@@ -13,5 +14,7 @@ module.exports = lambda(async ({lambdaEvent, lambdaContext}) => {
 async function decodeToken(lambdaEvent) {
   // Decode token with your sercret
   // and return object with payload
-  return lambdaEvent;
+  return {
+    userId: '12331',
+  };
 }

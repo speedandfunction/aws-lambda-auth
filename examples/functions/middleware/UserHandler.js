@@ -1,6 +1,6 @@
 const {AuthHandler, utils} = require('../../../index');
 
-module.exports = class UserHandler extends AuthHandler {
+export default class UserHandler extends AuthHandler {
   get name() {
     // Just name to be logged
     return 'Common user handler';
@@ -28,4 +28,4 @@ module.exports = class UserHandler extends AuthHandler {
 
     // You can check record by "userId" in your DataBase and throw to deny access
   }
-};
+}

@@ -9,7 +9,7 @@ const UserHandler = require('./UserHandler');
 // This middleware allow us to decode lambda VENV and pass it via lambdaContext
 const kmsMiddleware = middlewares.kms(['MONGO_USER', 'MONGO_PASS']);
 
-module.exports = lambda(async ({lambdaEvent, lambdaContext}) => {
+export default lambda(async ({lambdaEvent, lambdaContext}) => {
   // lambdaContext.kms will has decoded "MONGO_USER" and "MONGO_PASS"
   // so that we can connect to MongoDB to be able to check user access in "UserHandler"
 

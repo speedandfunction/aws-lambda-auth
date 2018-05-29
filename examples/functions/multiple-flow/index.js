@@ -2,7 +2,7 @@ const {MultipleAuthFlow, lambda, utils} = require('../../../index');
 const UserHandler = require('./UserHandler');
 const AdminHandler = require('./AdminHandler');
 
-module.exports = lambda(async ({lambdaEvent, lambdaContext}) => {
+export default lambda(async ({lambdaEvent, lambdaContext}) => {
   const bearerToken = utils.extractTokenFromEvent(lambdaEvent);
   const tokenPayload = await decodeToken(bearerToken);
 
@@ -15,5 +15,8 @@ module.exports = lambda(async ({lambdaEvent, lambdaContext}) => {
 async function decodeToken(lambdaEvent) {
   // Decode token with your sercret
   // and return object with payload
-  return lambdaEvent;
+  return {
+    role: 'ADMIN',
+    userId: '123123',
+  };
 }
