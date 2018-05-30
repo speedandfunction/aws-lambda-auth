@@ -11,5 +11,6 @@ module.exports = {
       'class-methods-use-this': 'off',
       'no-empty-function': 'off',
       'no-underscore-dangle': 'off',
+      'no-console': 'off',
     },
 };

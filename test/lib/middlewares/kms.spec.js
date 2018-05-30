@@ -5,7 +5,7 @@ const proxyquire = require('proxyquire');
 const proxyquireStrict = proxyquire.noCallThru();
 
 describe('lib/middlewares/kms', () => {
-  const sandbox = sinon.sandbox.create();
+  const sandbox = sinon.createSandbox();
   let decryptStub;
   let kmsMiddleware;
   let decryptedResultStub;

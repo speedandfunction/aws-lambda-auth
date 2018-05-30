@@ -1,11 +1,12 @@
 const {expect} = require('chai');
-const createAllowPolicy = require('../../lib/policy');
+const {createAllowPolicy} = require('../../lib/policy');
 
 describe('lib/auth/policy', () => {
   describe('Allow policy', () => {
     it('should throw if "principalId" is not passed', () => {
       expect(() => createAllowPolicy({})).to.throw(/principalId/);
     });
+
     it('should throw if "arn" id is not passed', () => {
       expect(() => createAllowPolicy({principalId: 1})).to.throw(/arn/);
     });
