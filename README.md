@@ -49,16 +49,19 @@ That's all. You can build a bundle and deploy to the AWS.
 
 ### Single flow
 Use this flow when there is only one type of user.
-[look at the example](./example/single-flow)
+
+[look at the example](./examples/functions/single-flow)
 
 ### Multiple flow
 Use this flow when there are a few types of users and you want to handle each independently.
-[look at the example](./example/miltiple-flow)
+
+[look at the example](./examples/functions/multiple-flow)
 
 ### Middlewares
 Middlewares allow you to extend lambda context so that you will have a chance to
-use in in your handlers.
-[look at the example](./example/middleware)
+use it in your handlers.
+
+[look at the example](./examples/functions/middleware)
 
 ### Utils
 
